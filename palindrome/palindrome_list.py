@@ -18,8 +18,11 @@ class Palindrome:
         """
 
         with open(file_name, "r", encoding='utf-8') as file:
-            all_lines = [line.split('/')[0].rstrip() for line in file.readlines()
-                         if len(line.rstrip()) > 0]
+            all_lines = [line.split(' ')[0].rstrip() for line in file.readlines()
+                         if len(line.split(' ')[0].rstrip()) > 0 and line[0] != ' ']
+
+        all_lines = list(dict.fromkeys(all_lines))
+
         return all_lines
 
     def write_to_file(self, path: str, words: list):
@@ -58,6 +61,8 @@ class Palindrome:
             if self.is_palindrome(word):
                 palindromes.append(word)
         self.write_to_file(path_to, palindromes)
+
+        return palindromes
 
 
 if __name__ == '__main__':
