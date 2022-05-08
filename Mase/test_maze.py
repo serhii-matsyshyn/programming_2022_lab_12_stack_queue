@@ -18,6 +18,7 @@ if __name__ == '__main__':
     # * x * x x
     # _ x * * *
     maze.reset()
+    print()
     print(maze)
     # * * * * *
     # * _ * _ *

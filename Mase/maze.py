@@ -1,6 +1,8 @@
 """Implemention of the Maze ADT using a 2-D array."""
 from arrays import Array2D
 
+# pylint: disable=invalid-name  # Used to meet the requirements of the lab.
+
 
 class Maze:
     """Define constants to represent contents of the maze cells."""
@@ -100,7 +102,7 @@ class Maze:
                     str_repr += self._maze_cells[row, col]
                     str_repr += " "
             str_repr += "\n"
-        return str_repr
+        return str_repr[:-1]
 
     def _valid_move(self, row, col):
         """Returns True if the given cell position is a valid move."""
