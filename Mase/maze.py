@@ -53,8 +53,10 @@ class Maze:
         to the exit. Returns True if a path is found and False otherwise.
         """
         # If no parameters are given, use the stored starting cell.
-        row = row or self._start_cell.row
-        col = col or self._start_cell.col
+        if row is None:
+            row = self._start_cell.row
+        if col is None:
+            col = self._start_cell.col
 
         if self._valid_move(row, col):
             self._mark_path(row, col)
@@ -102,9 +104,9 @@ class Maze:
 
     def _valid_move(self, row, col):
         """Returns True if the given cell position is a valid move."""
-        return all((0 <= row < self.num_rows(),
-                    0 <= col < self.num_cols(),
-                    self._maze_cells[row, col] is None))
+        return (0 <= row < self.num_rows() and
+                0 <= col < self.num_cols() and
+                self._maze_cells[row, col] is None)
 
     def _exit_found(self, row, col):
         """Helper method to determine if the exit was found."""
@@ -125,3 +127,10 @@ class _CellPosition(object):
     def __init__(self, row, col):
         self.row = row
         self.col = col
+
+
+if __name__ == '__main__':
+    maze = Maze(5, 5)
+    maze.reset()
+
+    print(maze)
